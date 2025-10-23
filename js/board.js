@@ -67,3 +67,23 @@ function unflipCards() {
 function resetBoard() {
     [firstCard, secondCard, lockBoard] = [null, null, false];
 }
+
+export function resetGame(cardCount) {
+    gameBoard.innerHTML = '';
+    [firstCard, secondCard, lockBoard] = [null, null, false];
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const restartBtn = document.getElementById('restart-btn');
+    if (restartBtn) {
+        restartBtn.addEventListener('click', () => {
+            resetGame();
+            const cardCount = parseInt(prompt("Syötä korttien määrä (parillinen luku):"), 10);
+            if (isNaN(cardCount) || cardCount % 2 !== 0) {
+                alert("Korttien määrän täytyy olla parillinen luku");
+                return;
+            }
+            createBoard(cardCount);
+        });
+    };
+});
