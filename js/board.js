@@ -7,6 +7,9 @@ const gameBoard = document.getElementById('game-board');
 let firstCard = null;
 let secondCard = null;
 let lockBoard = false;
+let attempts = 0;
+let matchedPairs = 0;
+let totalPairs = 0;
 
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -16,7 +19,8 @@ function shuffle(array) {
 }
 
 export function createBoard(cardCount) {
-    const selectedCards = allCards.slice(0, cardCount / 2);
+    totalPairs = cardCount / 2;
+    const selectedCards = allCards.slice(0, totalPairs);
     const cards = [...selectedCards, ...selectedCards];
     shuffle(cards);
     cards.forEach(card => {
@@ -43,6 +47,7 @@ function handleCardFlip(cardElement) {
 
     secondCard = cardElement;
     lockBoard = true;
+    attempts++;
     checkForMatch();
 }
 
@@ -54,6 +59,17 @@ function checkForMatch() {
 function disableCards() {
     firstCard.removeEventListener('click', flipCard);
     secondCard.removeEventListener('click', flipCard);
+
+    matchedPairs++;
+
+    if (matchedPairs === totalPairs) {
+        setTimeout(() => {
+            const modal =document.getElementById('win-modal');
+            const message = document.getElementById('win-message');
+            message.textContent = `Löysit kaikki parit ${attempts} yrityksellä!`;
+            modal.style.display = 'flex';
+        }, 500);
+    }
     resetBoard();
 }
 
@@ -74,4 +90,6 @@ function resetBoard() {
 export function resetGame(cardCount) {
     gameBoard.innerHTML = '';
     [firstCard, secondCard, lockBoard] = [null, null, false];
+    attempts = 0;
+    matchedPairs = 0;
 }

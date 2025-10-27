@@ -3,16 +3,21 @@ import { createBoard, resetGame } from './board.js';
 document.addEventListener('DOMContentLoaded', () => {
     const restartBtn = document.getElementById('restart-btn');
     const select = document.getElementById('card-select');
+    const winModal = document.getElementById('win-modal');
+    const closeModalBtn = document.getElementById('close-modal-btn');
 
     function startNewGame() {
+        winModal.style.display = 'none';
         const cardCount = parseInt(select.value, 10);
         resetGame();
         createBoard(cardCount);
     }
 
-    startNewGame(); // Pelin käynnistys heti sivun latauduttua
+    closeModalBtn.addEventListener('click', () => {
+    winModal.style.display = 'none';
+    })
 
-    select.addEventListener('change', startNewGame); // Korttimäärän vaihtuessa aloitetaan uusi peli
-
-    restartBtn.addEventListener('click', startNewGame); // Uusi peli -nappi käyttää valintaa, joka on aktiivinen
+    startNewGame();
+    select.addEventListener('change', startNewGame);
+    restartBtn.addEventListener('click', startNewGame);
 });
