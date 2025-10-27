@@ -1,10 +1,18 @@
-import { createBoard } from './board.js';
+import { createBoard, resetGame } from './board.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-    const cardCount = parseInt(prompt("Syötä korttien määrä (parillinen luku):"), 10);
-    if (cardCount % 2 !== 0) {
-        alert("Korttien määrän täytyy olla parillinen luku.");
-        return;
+    const restartBtn = document.getElementById('restart-btn');
+    const select = document.getElementById('card-select');
+
+    function startNewGame() {
+        const cardCount = parseInt(select.value, 10);
+        resetGame();
+        createBoard(cardCount);
     }
-    createBoard(cardCount);
+
+    startNewGame(); // Pelin käynnistys heti sivun latauduttua
+
+    select.addEventListener('change', startNewGame); // Korttimäärän vaihtuessa aloitetaan uusi peli
+
+    restartBtn.addEventListener('click', startNewGame); // Uusi peli -nappi käyttää valintaa, joka on aktiivinen
 });
