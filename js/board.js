@@ -1,5 +1,7 @@
 import { createCardElement, flipCard } from './card.js';
 
+const flipSound = new Audio('./sounds/flipcard.mp3');
+const pairSound = new Audio('./sounds/findpair.mp3');
 const allCards = [
     '🍎', '🍐', '🍒', '🍉', '🍇', '🍓', '🍌', '🍍', '🥝', '🥥', '🍑', '🍈', '🍋', '🍊', '🍏', '🍅'
 ];
@@ -40,6 +42,9 @@ function handleCardFlip(cardElement) {
     cardElement.classList.add('flipped');
     cardElement.textContent = cardElement.dataset.card;
 
+    flipSound.currentTime = 0;
+    flipSound.play();
+
     if (!firstCard) {
         firstCard = cardElement;
         return;
@@ -62,13 +67,18 @@ function disableCards() {
 
     matchedPairs++;
 
+    setTimeout(() => {
+        pairSound.currentTime = 0;
+        pairSound.play();
+    }, 500);
+
     if (matchedPairs === totalPairs) {
         setTimeout(() => {
             const modal =document.getElementById('win-modal');
             const message = document.getElementById('win-message');
             message.textContent = `Löysit kaikki parit ${attempts} yrityksellä!`;
             modal.style.display = 'flex';
-        }, 500);
+        }, 1500);
     }
     resetBoard();
 }
@@ -79,6 +89,8 @@ function unflipCards() {
         secondCard.classList.remove('flipped');
         firstCard.textContent = '';
         secondCard.textContent = '';
+        flipSound.currentTime = 0;
+        flipSound.play();
         resetBoard();
     }, 1500);
 }
