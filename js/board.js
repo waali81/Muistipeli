@@ -2,6 +2,9 @@ import { createCardElement, flipCard } from './card.js';
 
 const flipSound = new Audio('./sounds/flipcard.mp3');
 const pairSound = new Audio('./sounds/findpair.mp3');
+flipSound.volume = 0.3;
+pairSound.volemu = 0.5;
+
 const allCards = [
     '🍎', '🍐', '🍒', '🍉', '🍇', '🍓', '🍌', '🍍', '🥝', '🥥', '🍑', '🍈', '🍋', '🍊', '🍏', '🍅'
 ];
