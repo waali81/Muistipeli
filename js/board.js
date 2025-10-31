@@ -5,6 +5,10 @@ const pairSound = new Audio('./sounds/findpair.mp3');
 flipSound.volume = 0.3;
 pairSound.volemu = 0.5;
 
+let timerInterval = null;
+let startTime = null;
+const timerDisplay = document.getElementById('timer');
+
 const allCards = [
     '🍎', '🍐', '🍒', '🍉', '🍇', '🍓', '🍌', '🍍', '🥝', '🥥', '🍑', '🍈', '🍋', '🍊', '🍏', '🍅'
 ];
@@ -15,6 +19,7 @@ let lockBoard = false;
 let attempts = 0;
 let matchedPairs = 0;
 let totalPairs = 0;
+let displayedSeconds = 0;
 
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -37,10 +42,30 @@ export function createBoard(cardCount) {
         gameBoard.appendChild(cardElement);
     });
 }
+function startTimer() {
+    clearInterval(timerInterval);
+    startTime = Date.now();
+    timerDisplay.textContent = 'Aika: 0 s';
+    timerInterval = setInterval(updateTimer, 1000);
+}
+
+function updateTimer() {
+    displayedSeconds = Math.floor((Date.now() - startTime) / 1000);
+    timerDisplay.textContent = `Aika: ${displayedSeconds} s`;
+}
+
+function stopTimer() {
+    clearInterval(timerInterval);
+    updateTimer();
+}
 
 function handleCardFlip(cardElement) {
     if (lockBoard) return;
     if (cardElement === firstCard) return;
+
+    if (!startTime) {
+        startTimer();
+    }
 
     cardElement.classList.add('flipped');
     cardElement.textContent = cardElement.dataset.card;
@@ -76,10 +101,11 @@ function disableCards() {
     }, 500);
 
     if (matchedPairs === totalPairs) {
+        stopTimer();
         setTimeout(() => {
             const modal =document.getElementById('win-modal');
-            const message = document.getElementById('win-message');
-            message.textContent = `Löysit kaikki parit ${attempts} yrityksellä!`;
+            const message = document.getElementById('win-message'); 
+            message.textContent = `Löysit kaikki parit ${attempts} yrityksellä ${displayedSeconds} sekunnissa!`;
             modal.style.display = 'flex';
         }, 1500);
     }
@@ -107,4 +133,7 @@ export function resetGame(cardCount) {
     [firstCard, secondCard, lockBoard] = [null, null, false];
     attempts = 0;
     matchedPairs = 0;
+    stopTimer();
+    startTime = null;
+    timerDisplay.textContent = 'Aika: 0 s';
 }
