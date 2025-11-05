@@ -26,6 +26,7 @@ body {
     justify-content: center;
     font-size: 24px;
     cursor: pointer;
+    border-radius: 12px;
 }
 
 .card.flipped {
@@ -74,4 +75,32 @@ body {
 @keyframes pop-in {
     from { transform: scale(0); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
+}
+
+/* 🔵 Hedelmäteema */
+.theme-fruits {
+    background-color:  #fff5e6;
+}
+
+.theme-fruits .card {
+    background-color: #ffcc80;
+    border: 2px solid #ffa726;
+}
+
+.theme-fruits .card.flipped {
+    background-color: #ffffff;
+}
+
+/* 🟣 Eläinteema */
+.theme-animals {
+    background-color: #e6f7ff;
+}
+
+.theme-animals .card {
+    background-color: #90caf9;
+    border: 2px solid #42a5f5;
+}
+
+.theme-animals .card.flipped {
+    background-color: #ffffff;
 }
