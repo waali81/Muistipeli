@@ -9,9 +9,15 @@ let timerInterval = null;
 let startTime = null;
 const timerDisplay = document.getElementById('timer');
 
-const allCards = [
+/*const allCards = [
     '🍎', '🍐', '🍒', '🍉', '🍇', '🍓', '🍌', '🍍', '🥝', '🥥', '🍑', '🍈', '🍋', '🍊', '🍏', '🍅'
+];*/
+
+const allCards =[
+    'apple.png', 'pear.png', 'carrot.png', 'watermelon.png', 'grape.png', 'strawberry.png', 'banana.png', 'pineapple.png',
+    'kiwi.png', 'blueberry.png', 'peach.png', 'pepper.png', 'rasberry.png', 'orange.png', 'avocado.png', 'tomato.png'  
 ];
+
 const gameBoard = document.getElementById('game-board');
 let firstCard = null;
 let secondCard = null;
@@ -68,7 +74,7 @@ function handleCardFlip(cardElement) {
     }
 
     cardElement.classList.add('flipped');
-    cardElement.textContent = cardElement.dataset.card;
+    /*cardElement.textContent = cardElement.dataset.card;*/
 
     flipSound.currentTime = 0;
     flipSound.play();
@@ -116,8 +122,10 @@ function unflipCards() {
     setTimeout(() => {
         firstCard.classList.remove('flipped');
         secondCard.classList.remove('flipped');
-        firstCard.textContent = '';
-        secondCard.textContent = '';
+        /*firstCard.textContent = '';
+        secondCard.textContent = '';*/
+        firstCard.innerHTML = '';
+        secondCard.innerHTML = '';
         flipSound.currentTime = 0;
         flipSound.play();
         resetBoard();
