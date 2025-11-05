@@ -10,7 +10,7 @@ export function flipCard(cardElement, callback) {
     cardElement.classList.add('flipped');
             // Lisää kuva korttiin
     const img = document.createElement('img');
-    img.src = `./images/${cardElement.dataset.card}`;
+    img.src = `./images/${cardElement.dataset.theme}/${cardElement.dataset.card}`;
     img.alt = 'Muistipelikortti';
     img.classList.add('card-image');
     cardElement.appendChild(img);

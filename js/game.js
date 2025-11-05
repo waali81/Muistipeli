@@ -9,8 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function startNewGame() {
         winModal.style.display = 'none';
         const cardCount = parseInt(select.value, 10);
+        const theme = document.getElementById('theme-select').value;
+        document.body.className = '';
+        document.body.classList.add(`theme-${theme}`);
         resetGame();
-        createBoard(cardCount);
+        createBoard(cardCount, theme);
     }
 
     closeModalBtn.addEventListener('click', () => {

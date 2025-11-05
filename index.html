@@ -6,7 +6,7 @@
     <title>Muistipeli</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
+<body class="theme">
     <div id="win-modal" class="modal" style="display:none;">
         <div class="modal-content">
             <h2>Onnea!</h2>
@@ -15,6 +15,11 @@
         </div>
     </div>
     <h1>Muistipeli</h1>
+    <label for="theme-select">Valitse teema:</label>
+    <select id="theme-select">
+        <option value="fruits" selected>Hedelmät</option>
+        <option value="animals">Eläimet</option>
+    </select>
     <h3 id="timer"></h3>
     <label for="card-select">Valitse korttein määrä:</label>
     <select id="card-select">

@@ -13,10 +13,15 @@ const timerDisplay = document.getElementById('timer');
     '🍎', '🍐', '🍒', '🍉', '🍇', '🍓', '🍌', '🍍', '🥝', '🥥', '🍑', '🍈', '🍋', '🍊', '🍏', '🍅'
 ];*/
 
-const allCards =[
+const fruitCards =[
     'apple.png', 'pear.png', 'carrot.png', 'watermelon.png', 'grape.png', 'strawberry.png', 'banana.png', 'pineapple.png',
     'kiwi.png', 'blueberry.png', 'peach.png', 'pepper.png', 'rasberry.png', 'orange.png', 'avocado.png', 'tomato.png'  
 ];
+
+const animalCards = [
+    'bear.png', 'butterfly.png', 'caribou.png', 'cat.png', 'falcon.png', 'fish.png', 'fox.png', 'frog.png', 'lion.png', 'mallard.png',
+    'monkey.png', 'snake.png', 'squirrel.png', 'tiger.png', 'turtle.png', 'wolf.png'
+]
 
 const gameBoard = document.getElementById('game-board');
 let firstCard = null;
@@ -34,13 +39,18 @@ function shuffle(array) {
     }
 }
 
-export function createBoard(cardCount) {
+export function createBoard(cardCount, theme='fruits') {
     totalPairs = cardCount / 2;
-    const selectedCards = allCards.slice(0, totalPairs);
+    let selectedSet = theme === 'animals' ? animalCards : fruitCards;
+    const selectedCards = selectedSet.slice(0, totalPairs);
     const cards = [...selectedCards, ...selectedCards];
     shuffle(cards);
+
+    gameBoard.innerHTML = '';
+
     cards.forEach(card => {
         const cardElement = createCardElement(card);
+        cardElement.dataset.theme = theme;
         cardElement.addEventListener('click', () => {
             if (lockBoard) return;
             flipCard(cardElement, handleCardFlip);
