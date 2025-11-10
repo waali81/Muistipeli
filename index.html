@@ -17,19 +17,30 @@
     <h1>Muistipeli</h1>
     <h3 id="timer"></h3>
     <div id="controls">
-        <label for="theme-select">Valitse teema:</label>
-        <select id="theme-select">
-            <option value="fruits" selected>Hedelmät</option>
-            <option value="animals">Eläimet</option>
-        </select>
-        
-        <label for="card-select">Valitse korttein määrä:</label>
-        <select id="card-select">
-            <option value="8">8</option>
-            <option value="12">12</option>
-            <option value="16" selected>16</option>
-            <option value="32">32</option>
-        </select>
+        <fieldset id="theme-select">
+            <legend>Valitse teema:</legend>
+            <label>
+                <input type="radio" name="theme" value="fruits" checked>
+                Hedelmät
+            </label>
+            <label>
+                <input type="radio" name="theme" value="animals">
+                Eläimet
+            </label>
+        </fieldset>
+
+        <fieldset id="card-select">
+            <legend>Valitse korttien määrä:</legend>
+            <label>
+                <input type="radio" name="cards" value="8"> 8
+            </label>
+            <label>
+                <input type="radio" name="cards" value="16" checked> 16
+            </label>
+            <label>
+                <input type="radio" name="cards" value="32"> 32
+            </label>
+        </fieldset> 
     </div>
     <div id="game-board"></div>
     <div id="bottom-controls">
