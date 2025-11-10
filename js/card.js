@@ -8,12 +8,10 @@ export function createCardElement(card) {
 export function flipCard(cardElement, callback) {
     if (cardElement.classList.contains('flipped')) return;
     cardElement.classList.add('flipped');
-            // Lisää kuva korttiin
     const img = document.createElement('img');
     img.src = `./images/${cardElement.dataset.theme}/${cardElement.dataset.card}`;
     img.alt = 'Muistipelikortti';
     img.classList.add('card-image');
     cardElement.appendChild(img);
-    /*cardElement.textContent = cardElement.dataset.card;*/
     callback(cardElement);
 }

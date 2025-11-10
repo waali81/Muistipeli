@@ -61,13 +61,15 @@ export function createBoard(cardCount, theme='fruits') {
 function startTimer() {
     clearInterval(timerInterval);
     startTime = Date.now();
-    timerDisplay.textContent = 'Aika: 0 s';
+    timerDisplay.textContent = 'Aika: 0:00 min';
     timerInterval = setInterval(updateTimer, 1000);
 }
 
 function updateTimer() {
     displayedSeconds = Math.floor((Date.now() - startTime) / 1000);
-    timerDisplay.textContent = `Aika: ${displayedSeconds} s`;
+    const minutes = Math.floor(displayedSeconds / 60);
+    const seconds = displayedSeconds % 60;
+    timerDisplay.textContent = `Aika: ${minutes}:${seconds.toString().padStart(2, '0')} min`;
 }
 
 function stopTimer() {
@@ -84,7 +86,6 @@ function handleCardFlip(cardElement) {
     }
 
     cardElement.classList.add('flipped');
-    /*cardElement.textContent = cardElement.dataset.card;*/
 
     flipSound.currentTime = 0;
     flipSound.play();
@@ -120,8 +121,11 @@ function disableCards() {
         stopTimer();
         setTimeout(() => {
             const modal =document.getElementById('win-modal');
-            const message = document.getElementById('win-message'); 
-            message.textContent = `Löysit kaikki parit ${attempts} yrityksellä ${displayedSeconds} sekunnissa!`;
+            const message = document.getElementById('win-message');
+            const minutes = Math.floor(displayedSeconds / 60);
+            const seconds = displayedSeconds % 60;
+            const timeString = `${minutes}:${seconds.toString().padStart(2, '0')} min`;
+            message.textContent = `Löysit kaikki parit ${attempts} yrityksellä ${timeString}!`;
             modal.style.display = 'flex';
         }, 1500);
     }
@@ -132,8 +136,6 @@ function unflipCards() {
     setTimeout(() => {
         firstCard.classList.remove('flipped');
         secondCard.classList.remove('flipped');
-        /*firstCard.textContent = '';
-        secondCard.textContent = '';*/
         firstCard.innerHTML = '';
         secondCard.innerHTML = '';
         flipSound.currentTime = 0;
@@ -153,5 +155,5 @@ export function resetGame(cardCount) {
     matchedPairs = 0;
     stopTimer();
     startTime = null;
-    timerDisplay.textContent = 'Aika: 0 s';
+    timerDisplay.textContent = 'Aika: 0:00 min';
 }
