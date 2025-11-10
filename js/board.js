@@ -15,7 +15,7 @@ const timerDisplay = document.getElementById('timer');
 
 const fruitCards =[
     'apple.png', 'pear.png', 'carrot.png', 'watermelon.png', 'grape.png', 'strawberry.png', 'banana.png', 'pineapple.png',
-    'kiwi.png', 'blueberry.png', 'peach.png', 'pepper.png', 'rasberry.png', 'orange.png', 'avocado.png', 'tomato.png'  
+    'kiwi.png', 'blueberry.png', 'peach.png', 'pepper.png', 'raspberry.png', 'orange.png', 'avocado.png', 'tomato.png'  
 ];
 
 const animalCards = [

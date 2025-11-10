@@ -8,6 +8,44 @@ body {
     padding-bottom: 20px;
 }
 
+h1 {
+    margin-bottom: 8px;
+    font-size: 2rem;
+}
+
+#timer {
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* 🧭 Kontrollipaneeli */
+#controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+#controls label {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+#controls select {
+    padding: 6px 10px;
+    font-size: 0.9rem;
+    border: 1px solid black;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+#controls select:focus {
+    outline: none;
+}
+
 #game-board {
     display: grid;
     grid-template-columns: repeat(4, minmax(60px, 1fr));
@@ -39,15 +77,9 @@ body {
     object-fit: contain;
 }
 
-#restart-btn {
-    padding: 10px 20px;
-    margin-bottom: 20px;
-    cursor: pointer;
-}
-
 #card-select{
     margin: 10px;
-    padding: 8px, 12px;
+    padding: 8px 12px;
     cursor: pointer;
 }
 
@@ -75,6 +107,26 @@ body {
 @keyframes pop-in {
     from { transform: scale(0); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
+}
+
+#bottom-controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#bottom-controls button {
+    padding: 10px 14px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid black;
+    cursor: pointer;
+    background-color: #fff;
+    transition: background-color 0.2s ease;
+}
+
+#bottom-controls button:hover {
+    background-color: #f0f0f0;
 }
 
 /* 🔵 Hedelmäteema */

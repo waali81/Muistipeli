@@ -15,20 +15,26 @@
         </div>
     </div>
     <h1>Muistipeli</h1>
-    <label for="theme-select">Valitse teema:</label>
-    <select id="theme-select">
-        <option value="fruits" selected>Hedelmät</option>
-        <option value="animals">Eläimet</option>
-    </select>
     <h3 id="timer"></h3>
-    <label for="card-select">Valitse korttein määrä:</label>
-    <select id="card-select">
-        <option value="8">8</option>
-        <option value="12">12</option>
-        <option value="16" selected>16</option>
-    </select>
-    <button id="restart-btn">Uusi peli</button>
+    <div id="controls">
+        <label for="theme-select">Valitse teema:</label>
+        <select id="theme-select">
+            <option value="fruits" selected>Hedelmät</option>
+            <option value="animals">Eläimet</option>
+        </select>
+        
+        <label for="card-select">Valitse korttein määrä:</label>
+        <select id="card-select">
+            <option value="8">8</option>
+            <option value="12">12</option>
+            <option value="16" selected>16</option>
+            <option value="32">32</option>
+        </select>
+    </div>
     <div id="game-board"></div>
+    <div id="bottom-controls">
+        <button id="restart-btn">Uusi peli</button>
+    </div>
     <script type="module" src="./js/game.js"></script>
 </body>
 </html>
