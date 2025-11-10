@@ -125,7 +125,7 @@ function disableCards() {
             const minutes = Math.floor(displayedSeconds / 60);
             const seconds = displayedSeconds % 60;
             const timeString = `${minutes}:${seconds.toString().padStart(2, '0')} min`;
-            message.textContent = `Löysit kaikki parit ${attempts} yrityksellä ${timeString}!`;
+            message.textContent = `Löysit kaikki parit ${attempts} yrityksellä ajassa ${timeString}!`;
             modal.style.display = 'flex';
         }, 1500);
     }
